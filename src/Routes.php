@@ -25,7 +25,7 @@ final class Routes {
 
     public function registerRoutes(array $routes) {
         foreach($routes as $route) {
-            if(is_string($route[2])) {
+            if(is_string($route[2]) && !str_contains($route[2], '\\')) {
                 $template = $route[2];
                 $route[2] = function(ServerRequestInterface $request, ResponseInterface $response) use ($template)  {
                     $response->getBody()->write(
